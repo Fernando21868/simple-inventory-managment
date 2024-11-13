@@ -1,0 +1,30 @@
+### Get all categories
+GET http://localhost:3000/inventories
+
+### Get category by id
+GET http://localhost:3000/inventories/5
+
+### Create category
+POST http://localhost:3000/inventories
+content-type: application/json
+
+{
+  "name": "Cars",
+  "quantity": 15,
+  "price": 12.33,
+  "category": "Fresh Produce"
+}
+
+### Update category
+PUT http://localhost:3000/inventories/4
+content-type: application/json
+
+{
+  "name": "Cars 2",
+  "quantity": 15,
+  "price": 12.33,
+  "category": "Fresh Produce"
+}
+
+### Delete category by id
+DELETE http://localhost:3000/inventories/3
