@@ -5,11 +5,15 @@ export abstract class IInventoryRepository {
 
   abstract getByIdRepository(id: number): Promise<InventoryModel>;
 
-  abstract createRepository(inventoryRequestDTO: InventoryModel): Promise<InventoryModel>;
+  abstract createRepository(
+    inventoryRequestDTO: InventoryModel,
+  ): Promise<InventoryModel>;
 
   abstract updateRepository(
     inventoryRequestDTO: InventoryModel,
   ): Promise<InventoryModel>;
 
   abstract deleteByIdRepository(id: number): Promise<InventoryModel>;
+
+  abstract getByCategoryRepository(category: string): Promise<InventoryModel[]>;
 }

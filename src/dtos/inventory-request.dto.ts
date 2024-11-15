@@ -1,11 +1,4 @@
-import {
-  IsDecimal,
-  IsEnum,
-  IsInt,
-  IsNotEmpty,
-  IsNumber,
-  IsString,
-} from 'class-validator';
+import { IsEnum, IsInt, IsNotEmpty, IsNumber, IsString } from 'class-validator';
 import { CategoryEnum } from 'src/models/category.enum';
 
 export class InventoryRequestDTO {

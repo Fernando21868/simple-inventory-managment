@@ -22,6 +22,14 @@ export class InventoryController implements IInventoryController {
     return this._inventoryService.getAllService();
   }
 
+  @Get('/total/:category')
+  async getInventoryValue(@Param('category') category: string) {
+    // Llamada al servicio para calcular el valor total del inventario usando recursión
+    const totalValue =
+      await this._inventoryService.calculateInventoryValue(category);
+    return { totalValue };
+  }
+
   @Get('/:id')
   getByIdController(
     @Param('id', ParseIntPipe) id: number,
@@ -35,7 +43,7 @@ export class InventoryController implements IInventoryController {
     return this._inventoryService.createService(inventoryRequestDTO);
   }
 
-  @Put("/:id")
+  @Put('/:id')
   updateController(
     @Param('id', ParseIntPipe) id: number,
     @Body() inventoryRequestDTO: InventoryRequestDTO,

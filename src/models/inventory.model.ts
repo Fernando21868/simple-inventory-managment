@@ -1,5 +1,4 @@
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
-import { CategoryEnum } from './category.enum';
 
 @Entity('inventory')
 export class InventoryModel {

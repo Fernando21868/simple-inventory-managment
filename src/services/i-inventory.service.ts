@@ -16,4 +16,6 @@ export abstract class IInventoryService {
   ): Promise<InventoryResponseDTO>;
 
   abstract deleteByIdService(id: number): Promise<InventoryResponseDTO>;
+
+  abstract calculateInventoryValue(category: string): Promise<number>;
 }

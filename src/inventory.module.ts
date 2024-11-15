@@ -10,7 +10,6 @@ import { IInventoryRepository } from './repositories/i-inventory.repository';
 import { IInventoryMapper } from './mappers/i-inventory.mapper';
 import { InventoryMapper } from './mappers/inventory.mapper';
 import { APP_PIPE } from '@nestjs/core';
-import { IInventoryController } from './controllers/i-inventory.controller';
 
 @Module({
   imports: [

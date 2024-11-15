@@ -4,6 +4,7 @@ import { InventoryResponseDTO } from 'src/dtos/inventory-response.dto';
 import { IInventoryService } from './i-inventory.service';
 import { IInventoryRepository } from 'src/repositories/i-inventory.repository';
 import { IInventoryMapper } from 'src/mappers/i-inventory.mapper';
+import { InventoryModel } from 'src/models/inventory.model';
 
 @Injectable()
 export class InventoryService implements IInventoryService {
@@ -67,5 +68,24 @@ export class InventoryService implements IInventoryService {
     const inventoryResponseDTO =
       this._inventoryMapper.inventoryToIventoryResponseDTO(inventory);
     return inventoryResponseDTO;
+  }
+
+  public async calculateInventoryValue(category: string): Promise<number> {
+    const inventoryItems =
+      await this._inventoryRepository.getByCategoryRepository(category);
+
+    return this.calculateTotal(inventoryItems, 0);
+  }
+
+  private calculateTotal(
+    items: InventoryModel[],
+    currentIndex: number,
+  ): number {
+    if (currentIndex >= items.length) {
+      return 0;
+    }
+    const currentItem = items[currentIndex];
+    const itemValue = currentItem.quantity * currentItem.price;
+    return itemValue + this.calculateTotal(items, currentIndex + 1);
   }
 }

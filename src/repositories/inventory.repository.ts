@@ -19,6 +19,12 @@ export class InventoryRepository implements IInventoryRepository {
     return await this._repositoryInventory.findOneBy({ id: id });
   }
 
+  public async getByCategoryRepository(
+    category: string,
+  ): Promise<InventoryModel[]> {
+    return await this._repositoryInventory.findBy({ category: category });
+  }
+
   public async createRepository(
     inventory: InventoryModel,
   ): Promise<InventoryModel> {
