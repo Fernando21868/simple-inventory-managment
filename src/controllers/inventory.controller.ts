@@ -18,43 +18,58 @@ export class InventoryController implements IInventoryController {
   constructor(private readonly _inventoryService: IInventoryService) {}
 
   @Get()
-  getAllController(): Promise<InventoryResponseDTO[]> {
-    return this._inventoryService.getAllService();
+  public async getAllController(): Promise<InventoryResponseDTO[]> {
+    const inventories = await this._inventoryService.getAllService();
+    console.log(inventories);
+    return inventories;
   }
 
   @Get('/total/:category')
-  async getInventoryValue(@Param('category') category: string) {
+  public async getInventoryValue(@Param('category') category: string) {
     // Llamada al servicio para calcular el valor total del inventario usando recursión
     const totalValue =
       await this._inventoryService.calculateInventoryValue(category);
+    console.log({ totalValue });
     return { totalValue };
   }
 
   @Get('/:id')
-  getByIdController(
+  public async getByIdController(
     @Param('id', ParseIntPipe) id: number,
   ): Promise<InventoryResponseDTO> {
-    return this._inventoryService.getByIdService(id);
+    const inventory = await this._inventoryService.getByIdService(id);
+    console.log(inventory);
+    return inventory;
   }
   @Post()
-  createController(
+  public async createController(
     @Body() inventoryRequestDTO: InventoryRequestDTO,
   ): Promise<InventoryResponseDTO> {
-    return this._inventoryService.createService(inventoryRequestDTO);
+    const inventory =
+      await this._inventoryService.createService(inventoryRequestDTO);
+    console.log(inventory);
+    return inventory;
   }
 
   @Put('/:id')
-  updateController(
+  public async updateController(
     @Param('id', ParseIntPipe) id: number,
     @Body() inventoryRequestDTO: InventoryRequestDTO,
   ): Promise<InventoryResponseDTO> {
-    return this._inventoryService.updateService(id, inventoryRequestDTO);
+    const inventory = await this._inventoryService.updateService(
+      id,
+      inventoryRequestDTO,
+    );
+    console.log(inventory);
+    return inventory;
   }
 
   @Delete('/:id')
-  deleteByIdController(
+  public async deleteByIdController(
     @Param('id', ParseIntPipe) id: number,
   ): Promise<InventoryResponseDTO> {
-    return this._inventoryService.deleteByIdService(id);
+    const inventory = await this._inventoryService.deleteByIdService(id);
+    console.log(inventory);
+    return inventory;
   }
 }
