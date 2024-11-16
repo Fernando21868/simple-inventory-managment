@@ -26,7 +26,6 @@ export class InventoryController implements IInventoryController {
 
   @Get('/total/:category')
   public async getInventoryValue(@Param('category') category: string) {
-    // Llamada al servicio para calcular el valor total del inventario usando recursión
     const totalValue =
       await this._inventoryService.calculateInventoryValue(category);
     console.log({ totalValue });
